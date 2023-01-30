@@ -10,9 +10,9 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <Layout>
+    <>
       <motion.div
-        className="max-w-xl px-5 xl:px-0"
+        className="mt-16 max-w-xl px-5 xl:px-0"
         initial="hidden"
         whileInView="show"
         animate="show"
@@ -96,7 +96,7 @@ export default function Home() {
           />
         ))}
       </div>
-    </Layout>
+    </>
   );
 }
 

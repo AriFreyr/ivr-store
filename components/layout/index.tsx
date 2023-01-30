@@ -8,6 +8,7 @@ import useScroll from "@/lib/hooks/use-scroll";
 import Meta from "./meta";
 import { useSignInModal } from "./sign-in-modal";
 import UserDropdown from "./user-dropdown";
+import NavMenu from "./nav-menu";
 
 export default function Layout({
   meta,
@@ -28,15 +29,15 @@ export default function Layout({
     <>
       <Meta {...meta} />
       <SignInModal />
-      <div className="fixed h-screen w-full bg-gradient-to-br from-indigo-50 via-white to-cyan-100" />
+      {/* <div className="fixed h-screen w-full bg-gradient-to-br from-indigo-50 via-white to-cyan-100" /> */}
       <div
-        className={`fixed top-0 w-full ${
+        className={`fixed top-0 flex w-full ${
           scrolled
             ? "border-b border-gray-200 bg-white/50 backdrop-blur-xl"
             : "bg-white/0"
         } z-30 transition-all`}
       >
-        <div className="mx-5 flex h-16 max-w-screen-xl items-center justify-between xl:mx-auto">
+        <div className="mx-5 grid h-16 w-full grid-cols-3 items-center justify-between lg:max-w-7xl xl:mx-auto">
           <Link href="/" className="flex items-center font-display text-2xl">
             <Image
               src="/logo.png"
@@ -47,7 +48,8 @@ export default function Layout({
             ></Image>
             <p>Innviðaráðgjöf</p>
           </Link>
-          <div>
+          <NavMenu />
+          <div className="justify-self-end">
             <AnimatePresence>
               {!session && status !== "loading" ? (
                 <motion.button
@@ -64,7 +66,7 @@ export default function Layout({
           </div>
         </div>
       </div>
-      <main className="flex w-full flex-col items-center justify-center py-32">
+      <main className="flex w-full flex-col items-center justify-center py-16">
         {children}
       </main>
       <div className="absolute w-full border-t border-gray-200 bg-white py-5 text-center">
